@@ -1,13 +1,11 @@
-import { Link } from "react-router-dom";
+// Home.jsx
+import { Heading, Text } from "@chakra-ui/react";
 
-export default function Header() {
+export default function Home() {
   return (
-    <header style={{ padding: "20px", background: "#222", color: "#fff" }}>
-      <h1>My React Blog</h1>
-      <nav>
-        <Link to="/" style={{ marginRight: "10px", color: "#fff" }}>홈</Link>
-        <Link to="/about" style={{ color: "#fff" }}>소개</Link>
-      </nav>
-    </header>
+    <>
+      <Heading>Welcome to My Site</Heading>
+      <Text mt={4}>이곳은 홈 화면입니다.</Text>
+    </>
   );
 }
