@@ -30,7 +30,7 @@ export default function MainPage() {
   return (
     <>
       {/* Home + About 섹션 */}
-      <section id="home" style={{ minHeight: "50vh", padding: "2rem" , background: "#f9fafb"  }}>
+      <section id="home" style={{ minHeight: "50vh", padding: "2rem" , background: "#FAF5FF"  }}>
         {/* 내용 */}
         <Container maxW="5xl" textAlign="center" position="relative" zIndex={1}>
             <Heading size="2xl" mb={4}>묵묵히, 꾸준히</Heading>
@@ -58,7 +58,7 @@ export default function MainPage() {
 
 
       {/* Blog 섹션 */}
-      <section id="blog" style={{ minHeight: "50vh", padding: "2rem" , background: "#f9fafb"  }}>
+      <section id="blog" style={{ minHeight: "50vh", padding: "2rem" , background: "#FAF5FF"  }}>
         <Container maxW="6xl">
           <Heading size="xl" textAlign="center" mb={8}>최근 블로그 글</Heading>
           <SimpleGrid columns={[1, 2, 3]} spacing={6}>
@@ -100,7 +100,7 @@ export default function MainPage() {
       </section>
 
       {/* Projects 섹션 */}
-      <section id="projects" style={{ minHeight: "60vh", padding: "2rem", background: "#f9fafb" }}>
+      <section id="projects" style={{ minHeight: "60vh", padding: "2rem", background: "#FAF5FF" }}>
         <Container maxW="6xl">
           <Heading size="xl" textAlign="center" mb={8}>프로젝트</Heading>
           <SimpleGrid columns={[1, 2, 3]} spacing={6}>

@@ -19,7 +19,7 @@ export default function PostPage() {
   }
 
   return (
-    <Box bg="gray.100" minH="100vh" py={12}>
+    <Box bg="purple.50" minH="100vh" py={12}>
       <Container maxW="4xl" bg="white" p={[6, 10]} rounded="md" shadow="sm">
         {/* 제목 */}
         <Heading
