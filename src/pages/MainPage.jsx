@@ -16,13 +16,13 @@ export default function MainPage() {
     {
       title: "시정조치프로그램(더존비즈온연계 프로젝트)",
       description: "시정이 필요한 일들을 효율적으로 처리하기 위한 프로젝트",
-      image: "https://private-user-images.githubusercontent.com/92311926/290033658-dbd99772-9369-4e6d-98a3-ad4b7373b1af.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NTY3MTI5MzksIm5iZiI6MTc1NjcxMjYzOSwicGF0aCI6Ii85MjMxMTkyNi8yOTAwMzM2NTgtZGJkOTk3NzItOTM2OS00ZTZkLTk4YTMtYWQ0YjczNzNiMWFmLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTA5MDElMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUwOTAxVDA3NDM1OVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPThhZGRkZjg0M2Q5ZTFhMmVhYjc5ZjBkNTMxNDNhODExODAyNzk5MTQ3MGYxOTA5NDJjZWNmZTM3ZmNlMTljMWUmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.FVZ3CaMYK_aa59qf17Y4tFTzvZQtKE7YLLnxZX9Kxa0",
+      image: "/dews_image.png",
       link: "https://github.com/rlaxoehd4234/douzoneCorrectiveAction",
     },
     {
       title: "Umbrella-개발자 협업 플랫폼",
       description: "Notion, Discord 등 개발자들이 필요로 하는 기능을 모은 플랫폼",
-      image: "https://private-user-images.githubusercontent.com/92311926/397373052-3ae04c6c-ee6b-49af-8e4d-b20e884f1e7d.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NTY3MTMwNDQsIm5iZiI6MTc1NjcxMjc0NCwicGF0aCI6Ii85MjMxMTkyNi8zOTczNzMwNTItM2FlMDRjNmMtZWU2Yi00OWFmLThlNGQtYjIwZTg4NGYxZTdkLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTA5MDElMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUwOTAxVDA3NDU0NFomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTEzMDU1NmYxODlhN2VlOGNhMzAyNmQxNWFhNTVmMWNlNmQ2YTllZTY0MmY1NmU4NWRkODJmMWMxYWU1ZTU1MGImWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.bJBKCKAmiK9Qgq2EXJmXoFfvRZjM8E_Tl_iyTKcXFJg",
+      image: "/umbrella_image.png",
       link: "https://github.com/rlaxoehd4234/Umbrella",
     },
   ];
