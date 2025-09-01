@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/static/js/main.364c22ab.js",
+    "main.js": "/static/js/main.ddb0322c.js",
     "index.html": "/index.html",
-    "main.364c22ab.js.map": "/static/js/main.364c22ab.js.map"
+    "main.ddb0322c.js.map": "/static/js/main.ddb0322c.js.map"
   },
   "entrypoints": [
-    "static/js/main.364c22ab.js"
+    "static/js/main.ddb0322c.js"
   ]
 }
