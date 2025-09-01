@@ -1,17 +1,32 @@
-import { Box, Flex, HStack, IconButton, Button, Stack, useDisclosure } from "@chakra-ui/react";
+import { Box, Flex, HStack, IconButton, Button, Stack, useDisclosure, Image } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { AnimatePresence } from "framer-motion";
+import { Link as RouterLink, useLocation, useNavigate } from "react-router-dom";
 import MotionBox from "./MotionBox";
 import { hStackStyle, navbarBoxStyle, navbarFlexStyle } from "../styles/navbarStyles";
 
-const Links = ["Home", "About", "Blog"];
+const Links = ["Home", "Blog"];
 
-// 버튼 클릭 시 해당 섹션으로 스크롤
 const NavButton = ({ children }) => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const handleClick = (e) => {
     e.preventDefault();
-    const section = document.getElementById(children.toLowerCase());
-    if (section) section.scrollIntoView({ behavior: "smooth" });
+
+    if (location.pathname !== "/") {
+      // 메인 페이지가 아니면 먼저 메인으로 보내고
+      navigate("/", { replace: false });
+      // 약간의 딜레이 후 스크롤 (setTimeout)
+      setTimeout(() => {
+        const section = document.getElementById(children.toLowerCase());
+        if (section) section.scrollIntoView({ behavior: "smooth" });
+      }, 100);
+    } else {
+      // 이미 메인에 있으면 그냥 스크롤
+      const section = document.getElementById(children.toLowerCase());
+      if (section) section.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   return (
@@ -24,13 +39,28 @@ const NavButton = ({ children }) => {
 export default function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
+  const handleLogoClick = () => {
+    const homeSection = document.getElementById("home");
+    if (homeSection) homeSection.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <Box {...navbarBoxStyle}>
       <Flex {...navbarFlexStyle}>
         {/* 로고 */}
-        <Box fontWeight="bold" fontSize="xl">MySite</Box>
+        <Box
+          as="button"
+          onClick={handleLogoClick}
+          display="flex"
+          alignItems="center"
+        >
+          <Image src="/bear-logo.png" alt="Logo" boxSize="40px" mr={2} />
+          <Box fontWeight="bold" fontSize="xl">
+            태동지산센터
+          </Box>
+        </Box>
 
-        {/* 데스크탑 버튼 메뉴 */}
+        {/* 데스크탑 버튼 */}
         <HStack {...hStackStyle}>
           {Links.map((link) => (
             <NavButton key={link}>{link}</NavButton>
@@ -47,7 +77,7 @@ export default function Navbar() {
         />
       </Flex>
 
-      {/* 모바일 슬라이딩 메뉴 */}
+      {/* 모바일 메뉴 */}
       <AnimatePresence>
         {isOpen && (
           <MotionBox

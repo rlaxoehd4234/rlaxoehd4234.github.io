@@ -2,7 +2,6 @@ export const footerBoxStyle = {
   bg: "white",               // 배경 흰색
   px: 4,
   position: "sticky",
-  bottom: 0,                 // footer니까 bottom으로 고정
   zIndex: 100,
   borderTop: "1px solid",    // 위쪽 선으로 변경
   borderColor: "purple.100", // 연보라빛 얇은 선

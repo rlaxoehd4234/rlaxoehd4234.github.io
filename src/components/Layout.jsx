@@ -1,5 +1,5 @@
 // Layout.jsx
-import Navbar from "./Navbar";
+import Navbar from "./NavBar";
 import Footer from "./Footer";
 import { Box, Container } from "@chakra-ui/react";
 

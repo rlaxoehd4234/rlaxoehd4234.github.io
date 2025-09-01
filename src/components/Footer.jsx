@@ -5,7 +5,7 @@ import { footerBoxStyle } from "../styles/footerStyles";
 export default function Footer() {
   return (
     <Box {...footerBoxStyle}>
-      <Text>© 2025 MySite</Text>
+      <Text>© 2025 태동지산센터</Text>
     </Box>
   );
 }

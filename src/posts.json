@@ -1,0 +1,10 @@
+[
+  {
+    "slug": "hello-world",
+    "title": "Hello World",
+    "date": "2025-09-01",
+    "description": "이 블로그의 첫 번째 글입니다.",
+    "content": "\r\n# Hello World\r\n이것은 첫 번째 블로그 글입니다.\r\n\r\n- React\r\n- GitHub Pages\r\n- Markdown\r\n",
+    "image" : "https://images.unsplash.com/photo-1507525428034-b723cf961d3e"
+  }
+]
