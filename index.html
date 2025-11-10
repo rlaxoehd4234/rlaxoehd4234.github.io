@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Minecraft World | 패럴렉스 스토리</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel-stylesheet>
+  <style>
+    /* 🎨 기본 설정 */
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+    }
+
+    html {
+      height: 100%;
+      /* 섹션 스냅 기능을 위한 scroll-snap-type 설정 */
+      scroll-snap-type: y mandatory; 
+      overflow-y: scroll;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+      /* 스크롤바 숨기기 (웹킷) */
+      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: none; /* Firefox */
+    }
+
+    /* 스크롤바 숨기기 (웹킷) */
+    ::-webkit-scrollbar {
+      display: none;
+    }
+
+    body {
+      height: 100%;
+      background: #0a0a0a;
+      font-family: "Press Start 2P", monospace;
+      color: #fff;
+    }
+
+    /* 📊 스크롤 진행률 바 - 하단 고정 */
+    #progressBar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      height: 6px;
+      width: 0%;
+      background: linear-gradient(90deg, #55ff55, #00cc44);
+      box-shadow: 0 0 10px #55ff55;
+      border-radius: 0 3px 3px 0;
+      z-index: 9999;
+      transition: width 0.2s ease-out;
+    }
+
+    /* 💯 퍼센테이지 표시 - 하단 고정 */
+    #progressPercent {
+      position: fixed;
+      bottom: 15px;
+      right: 20px;
+      z-index: 99999;
+      font-size: 0.8rem;
+      color: #55ff55;
+      background: rgba(0, 0, 0, 0.8);
+      padding: 8px 15px;
+      border-radius: 20px;
+      border: 2px solid #55ff55;
+      box-shadow: 0 0 15px rgba(85, 255, 85, 0.4);
+      font-family: "Press Start 2P", monospace;
+      text-shadow: 0 0 10px rgba(85, 255, 85, 0.8);
+    }
+
+    /* 🖼️ 각 섹션 */
+    section {
+      position: relative;
+      width: 100%;
+      height: 100vh; /* 섹션 스냅을 위해 height를 100vh로 고정 */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 40px 20px;
+      overflow: hidden;
+      /* 섹션 스냅 위치 설정 */
+      scroll-snap-align: start; 
+    }
+
+    /* 배경 레이어 (이미지 경로는 직접 설정해야 합니다) */
+    section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      opacity: 0.5;
+      background-size: cover;
+      background-position: center;
+      image-rendering: pixelated;
+      transition: transform 0.5s ease-out; /* 부드러운 전환을 위한 transition 추가 */
+    }
+
+    /* 각 섹션의 고유 배경 */
+    /* *주의: 이미지 경로는 실제로 존재해야 합니다.* */
+    #sec1::before { background-image: url('./image/main_0.png'); }
+    #sec2::before { background-image: url('./image/main_1.png'); }
+    #sec3::before { background-image: url('./image/main_2.png'); }
+    #sec4::before { background-image: url('./image/main_3.png'); }
+    #sec5::before { background-image: url('./image/main_4.png'); }
+
+    /* 픽셀 효과 오버레이 */
+    section::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      background-image: 
+        repeating-linear-gradient(0deg, rgba(0,0,0,0.15) 0px, transparent 1px, transparent 2px, rgba(0,0,0,0.15) 3px),
+        repeating-linear-gradient(90deg, rgba(0,0,0,0.15) 0px, transparent 1px, transparent 2px, rgba(0,0,0,0.15) 3px);
+      background-size: 4px 4px;
+      pointer-events: none;
+    }
+
+    /* 텍스트 박스 */
+    .textBox {
+      position: relative;
+      z-index: 10;
+      background: rgba(0, 0, 0, 0.9);
+      padding: 30px 50px;
+      border-radius: 15px;
+      border: 3px solid #55ff55;
+      box-shadow: 
+        0 0 20px rgba(85, 255, 85, 0.3),
+        inset 0 0 20px rgba(85, 255, 85, 0.1);
+      color: #55ff55;
+      max-width: 90%;
+      line-height: 2;
+      font-size: clamp(0.7rem, 2vw, 1rem);
+      text-shadow: 
+        2px 2px 0 #000,
+        0 0 10px rgba(85, 255, 85, 0.5);
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .textBox h3 {
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      margin-bottom: 15px;
+      color: #66ff66;
+      text-shadow: 0 0 15px rgba(85, 255, 85, 0.8);
+    }
+
+    .textBox p {
+      font-size: clamp(0.6rem, 1.5vw, 0.85rem);
+      line-height: 1.8;
+      color: #aaffaa;
+      margin: 10px 0;
+    }
+
+    .textBox .icon {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      display: block;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* 🖱️ 섹션 클릭 오버레이 - Hover 효과 제거됨! */
+    .click-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 20; 
+      cursor: pointer;
+      background: transparent; /* 배경 투명 유지 */
+    }
+
+    .click-overlay:hover {
+      background: transparent; /* 마우스 오버 시에도 투명 유지 */
+    }
+
+    /* ⬇️ 스크롤 인디케이터 */
+    .scroll-indicator {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 100;
+      animation: bounce 2s infinite;
+      opacity: 0.7;
+      transition: opacity 0.3s;
+    }
+
+    .scroll-indicator.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+      40% { transform: translateX(-50%) translateY(-10px); }
+      60% { transform: translateX(-50%) translateY(-5px); }
+    }
+
+    .scroll-indicator span {
+      display: block;
+      width: 20px;
+      height: 30px;
+      border: 2px solid #55ff55;
+      border-radius: 15px;
+      position: relative;
+    }
+
+    .scroll-indicator span::before {
+      content: '';
+      position: absolute;
+      top: 5px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 4px;
+      height: 8px;
+      background: #55ff55;
+      border-radius: 2px;
+      animation: scroll 2s infinite;
+    }
+
+    @keyframes scroll {
+      0% { top: 5px; opacity: 1; }
+      100% { top: 15px; opacity: 0; }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="progressBar"></div>
+  
+  <div id="progressPercent">0%</div>
+
+  <div class="scroll-indicator" id="scrollIndicator">
+    <span></span>
+  </div>
+
+  <section id="sec1">
+        <span class="icon">⛏️</span>
+        <h3>픽셀 세계에 오신 것을 환영합니다</h3>
+        <p>**끝없는 블록의 대륙**이 당신을 기다립니다.</p>
+        <p>손에 곡괭이를 쥐고, **당신의 이야기**를 지금 바로 시작하세요.</p>
+      <div class="click-overlay" onclick="scrollToNextSection('sec1')"></div>
+  </section>
+  
+  <section id="sec2">
+      <span class="icon">🏗️</span>
+        <h3>명예의 퀘스트</h3>
+        <p>잊혀진 던전을 탐험하고 **숨겨진 업적**을 달성하세요.</p>
+        <p>**다양한 칭호**를 얻어 당신의 명예를 빛내십시오.</p>
+    <div class="click-overlay" onclick="scrollToNextSection('sec2')"></div>
+  </section>
+  
+  <section id="sec3">
+      <span class="icon">🧭</span>
+        <h3>경제 시스템: 경매장</h3>
+        <p>귀중한 자원과 아이템을 안전하게 거래하세요.</p>
+        <p>**희귀 광물**을 경매에 올려 부를 축적하거나, 필요한 물품을 구매하십시오.</p>
+    <div class="click-overlay" onclick="scrollToNextSection('sec3')"></div>
+  </section>
+  
+  <section id="sec4">
+      <span class="icon">🏔️</span>
+        <h3>무한한 창조의 영역</h3>
+        <p>**다양한 생물군계**를 탐험하며 영감을 얻으세요.</p>
+        <p>**상상 속의 건축물**을 현실로 만들어 이 세계를 장식하십시오.</p>
+    <div class="click-overlay" onclick="scrollToNextSection('sec4')"></div>
+  </section>
+  
+  <section id="sec5">
+      <span class="icon">⚔️</span>
+      <h3 id="last-title">함께 하기</h3>
+      <p>지금 함께 할 수 있습니다.</p>
+      <p>지금 당장 함께합시다!!</p>
+      <a href="#" class="btn" style="
+        display: inline-block; margin-top: 30px; padding: 18px 40px; 
+        background-color: #55ff55; color: #000; border: 3px solid #55ff55; 
+        border-radius: 8px; font-size: 0.9rem; text-decoration: none; 
+        font-weight: bold; transition: all 0.3s ease; 
+        box-shadow: 0 0 20px rgba(85, 255, 85, 0.5); position: relative; 
+        overflow: hidden;">ENTER THE WORLD</a>
+    </section>
+
+  <script>
+    const sections = document.querySelectorAll("section");
+    const scrollIndicator = document.getElementById("scrollIndicator");
+    const progressBar = document.getElementById("progressBar");
+    const progressPercent = document.getElementById("progressPercent");
+    const sectionIds = Array.from(sections).map(sec => sec.id);
+
+    /**
+     * 📏 스크롤 진행률 계산 및 업데이트 함수
+     */
+    function updateProgress() {
+      const winH = window.innerHeight;
+      const scrollY = window.scrollY;
+      const maxScrollHeight = (sections.length - 1) * winH;
+      
+      let scrollPercent = 0;
+
+      if (maxScrollHeight > 0) {
+        scrollPercent = (scrollY / maxScrollHeight) * 100;
+      } else if (sections.length === 1) {
+        scrollPercent = 0; 
+      }
+
+      // 진행률 바 업데이트
+      progressBar.style.width = scrollPercent + "%";
+      
+      // 퍼센테이지 텍스트 업데이트
+      progressPercent.textContent = Math.round(scrollPercent) + "%";
+
+      // 스크롤 인디케이터 숨기기
+      if (scrollY > winH * 0.5) {
+        scrollIndicator.classList.add("hidden");
+      } else {
+        scrollIndicator.classList.remove("hidden");
+      }
+    }
+
+    /**
+     * 🖱️ 마우스 클릭으로 다음 섹션으로 이동하는 함수
+     * @param {string} currentId 현재 섹션의 ID
+     */
+    function scrollToNextSection(currentId) {
+        const currentIndex = sectionIds.indexOf(currentId);
+        const nextIndex = currentIndex + 1;
+        
+        if (nextIndex < sections.length) {
+            const nextSection = sections[nextIndex];
+            // 다음 섹션으로 부드럽게 스크롤
+            nextSection.scrollIntoView({ behavior: 'smooth' });
+        } else {
+            console.log("마지막 섹션입니다.");
+        }
+    }
+
+    // 📜 스크롤 이벤트 및 초기 로드 설정
+    let ticking = false;
+    window.addEventListener("scroll", () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          updateProgress();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+
+    // 페이지 로드 및 창 크기 조정 시에도 확인
+    window.addEventListener("load", updateProgress);
+    window.addEventListener("resize", updateProgress); 
+    
+    // 초기 실행
+    updateProgress();
+  </script>
+</body>
+</html>
