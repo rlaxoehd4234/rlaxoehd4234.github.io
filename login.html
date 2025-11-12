@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BH World 로그인</title>
+  <link rel="stylesheet" href="login.css">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-box">
+      <h1 class="logo">⛏️ BH World</h1>
+      <h2>로그인</h2>
+
+      <form id="loginForm">
+        <div class="input-group">
+          <input type="text" id="userId" required>
+          <label for="userId">아이디</label>
+        </div>
+
+        <div class="input-group">
+          <input type="password" id="userPw" required>
+          <label for="userPw">비밀번호</label>
+        </div>
+
+        <button type="submit" class="login-btn">로그인</button>
+      </form>
+
+      <div class="links">
+        <a href="#">회원가입</a>
+        <span>|</span>
+        <a href="#">비밀번호 찾기</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 로그인 폼 제출 이벤트
+    const form = document.getElementById('loginForm');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault(); // 새로고침 방지
+
+      const id = document.getElementById('userId').value.trim();
+      const pw = document.getElementById('userPw').value.trim();
+
+      if (id && pw) {
+        // ✅ 로그인 성공 시 main.html로 이동
+        window.location.href = "main.html";
+      } else {
+        alert("아이디와 비밀번호를 모두 입력해주세요.");
+      }
+    });
+  </script>
+</body>
+</html>

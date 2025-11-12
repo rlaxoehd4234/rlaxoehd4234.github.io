@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BH World Server</title>
+  <link rel="stylesheet" href="main.css">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <!-- 상단 네비게이션 -->
+  <header class="top-nav">
+    <nav class="nav-center">
+      <ul>
+        <li class="active" data-page="auction">💰 경매</li>
+        <li data-page="ranking">🏆 랭킹</li>
+        <li data-page="community">💬 커뮤니티</li>
+      </ul>
+    </nav>
+
+    <div class="nav-right">
+      <button class="icon-btn" title="알림">🔔</button>
+      <button class="icon-btn" title="마이페이지">👤</button>
+    </div>
+  </header>
+
+  <!-- 메인 콘텐츠 -->
+  <main class="content">
+    <!-- 경매 -->
+    <section id="auction" class="page active">
+      <h2>💰 경매장</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>아이템</th>
+            <th>판매자</th>
+            <th>현재가</th>
+            <th>남은 시간</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>다이아 곡괭이</td><td>BlueMiner</td><td>5,200G</td><td>02:13:45</td></tr>
+          <tr><td>황금 갑옷</td><td>IronGuard</td><td>3,200G</td><td>05:24:11</td></tr>
+          <tr><td>네더라이트 검</td><td>HellSlayer</td><td>11,200G</td><td>00:59:08</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- 랭킹 -->
+    <section id="ranking" class="page">
+      <h2>🏆 랭킹</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>순위</th>
+            <th>닉네임</th>
+            <th>레벨</th>
+            <th>명성</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>PlayerKing</td><td>58</td><td>4021</td></tr>
+          <tr><td>2</td><td>BlockHero</td><td>52</td><td>3750</td></tr>
+          <tr><td>3</td><td>PickMaster</td><td>49</td><td>3612</td></tr>
+          <tr><td>4</td><td>GoldGiant</td><td>45</td><td>3420</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- 커뮤니티 -->
+    <section id="community" class="page">
+      <h2>💬 커뮤니티</h2>
+      <ul class="board">
+        <li><span>[공지]</span> 2025 겨울 시즌 이벤트 안내</li>
+        <li><span>[업데이트]</span> 경매 시스템 개선 안내</li>
+        <li><span>[자유]</span> 내 건축 자랑하기!</li>
+        <li><span>[길드]</span> 블록수호단 신규 길드원 모집</li>
+        <li><span>[질문]</span> 서버 접속 오류 관련 문의</li>
+      </ul>
+    </section>
+  </main>
+
+  <script src="main.js"></script>
+</body>
+</html>

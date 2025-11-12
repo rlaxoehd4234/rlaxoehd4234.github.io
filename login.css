@@ -1,0 +1,145 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Press Start 2P", monospace;
+  color: #3b2f2f;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* ✅ Minecraft 스타일 배경 */
+  background: 
+    linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)),
+    url("./image/main_4.png") center/cover no-repeat fixed;
+  position: relative;
+}
+
+/* ✅ 블록 질감 */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0.4;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(0,0,0,0.08) 0px, transparent 2px, transparent 4px, rgba(0,0,0,0.08) 6px),
+    repeating-linear-gradient(90deg, rgba(0,0,0,0.08) 0px, transparent 2px, transparent 4px, rgba(0,0,0,0.08) 6px);
+  background-size: 6px 6px;
+  image-rendering: pixelated;
+}
+
+/* ===== 로그인 박스 ===== */
+.login-container {
+  width: 100%;
+  max-width: 400px;
+  background: #fff;
+  padding: 50px 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.logo {
+  color: #7b4b2a;
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: 0.9rem;
+  margin-bottom: 30px;
+  color: #3b2f2f;
+}
+
+/* ===== 입력 필드 ===== */
+.input-group {
+  position: relative;
+  margin-bottom: 25px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 14px 10px;
+  font-size: 0.75rem;
+  border: 2px solid #dcd2c5;
+  border-radius: 6px;
+  background: #faf8f5;
+  color: #3b2f2f;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.input-group label {
+  position: absolute;
+  left: 12px;
+  top: 13px;
+  color: #9a897a;
+  font-size: 0.7rem;
+  pointer-events: none;
+  transition: 0.2s ease;
+}
+
+.input-group input:focus,
+.input-group input:valid {
+  border-color: #a76a3a;
+  background: #fff;
+}
+
+.input-group input:focus + label,
+.input-group input:valid + label {
+  top: -10px;
+  left: 8px;
+  font-size: 0.55rem;
+  color: #7b4b2a;
+  background: #fff;
+  padding: 0 5px;
+}
+
+/* ===== 로그인 버튼 ===== */
+.login-btn {
+  width: 100%;
+  padding: 14px 0;
+  font-size: 0.8rem;
+  background: linear-gradient(90deg, #a76a3a, #7b4b2a);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.login-btn:hover {
+  background: linear-gradient(90deg, #7b4b2a, #5b3a1c);
+  transform: translateY(-2px);
+}
+
+/* ===== 링크 ===== */
+.links {
+  margin-top: 25px;
+  font-size: 0.6rem;
+  color: #7b4b2a;
+}
+
+.links a {
+  color: #7b4b2a;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.links a:hover {
+  text-decoration: underline;
+}
+
+.links span {
+  color: #bcae9e;
+  margin: 0 8px;
+}

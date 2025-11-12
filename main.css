@@ -1,0 +1,201 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Press Start 2P", monospace;
+  color: #3b2f2f;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  /* ✅ 배경 이미지 + 흐림 + 블록 텍스처 */
+  background: url("./image/main_4.png") center/cover no-repeat fixed;
+  position: relative;
+}
+
+/* ✅ 블록 질감 오버레이 (Minecraft 느낌 강화) */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+
+  /* 🔸 더 도드라지는 블록 격자 (픽셀 효과 강화) */
+  opacity: 0.5; /* 질감 강도 */
+  background-image:
+    repeating-linear-gradient(0deg, rgba(0,0,0,0.12) 0px, transparent 2px, transparent 4px, rgba(0,0,0,0.12) 6px),
+    repeating-linear-gradient(90deg, rgba(0,0,0,0.12) 0px, transparent 2px, transparent 4px, rgba(0,0,0,0.12) 6px);
+  background-size: 6px 6px; /* 블록 크기 (픽셀 느낌) */
+  image-rendering: pixelated;
+  pointer-events: none;
+}
+
+/* ===== 상단 네비게이션 ===== */
+.top-nav {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.92);
+  border-bottom: 2px solid #e0d5c5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 30px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.nav-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.nav-center ul {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+}
+
+.nav-center li {
+  cursor: pointer;
+  color: #3b2f2f;
+  font-size: 0.75rem;
+  padding: 8px 16px;
+  border-radius: 6px;
+  position: relative;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.nav-center li::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #a76a3a, #7b4b2a);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+  z-index: -1;
+  border-radius: 6px;
+}
+
+.nav-center li:hover::before,
+.nav-center li.active::before {
+  transform: scaleX(1);
+}
+
+.nav-center li:hover,
+.nav-center li.active {
+  color: #fff;
+  box-shadow: 0 0 6px rgba(165, 107, 65, 0.25);
+}
+
+/* 우측 아이콘 버튼 */
+.nav-right {
+  display: flex;
+  gap: 10px;
+}
+
+.icon-btn {
+  background: transparent;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #3b2f2f;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+}
+
+.icon-btn:hover {
+  background: rgba(167, 106, 58, 0.15);
+  color: #7b4b2a;
+  transform: scale(1.1);
+}
+
+/* ===== 콘텐츠 ===== */
+.content {
+  padding-top: 70px;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+}
+
+/* ✅ 섹션: 완전 흰색 */
+.page {
+  display: none;
+  margin: 0 auto;
+  max-width: 1000px;
+  background: #ffffff;
+  padding: 60px 8vw;
+  min-height: calc(100vh - 100px);
+}
+
+.page.active {
+  display: block;
+}
+
+/* ===== 테이블 ===== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+  font-size: 0.65rem;
+  border: 1px solid #e0d5c5;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+th, td {
+  border: 1px solid #e0d5c5;
+  padding: 10px;
+  text-align: center;
+}
+
+th {
+  background: #f2e6da;
+  color: #7b4b2a;
+}
+
+tr:nth-child(even) {
+  background: #f9f6f2;
+}
+
+/* ===== 커뮤니티 게시판 ===== */
+.board {
+  list-style: none;
+  margin-top: 15px;
+  background: #fff;
+  border: 1px solid #e0d5c5;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.board li {
+  padding: 14px 20px;
+  border-bottom: 1px solid #e9dfd4;
+  font-size: 0.65rem;
+}
+
+.board li:last-child {
+  border-bottom: none;
+}
+
+.board span {
+  color: #7b4b2a;
+  margin-right: 10px;
+}
